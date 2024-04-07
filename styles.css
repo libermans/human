@@ -54,7 +54,7 @@ body {
 
 /* Frame around the text */
 .text-frame {
-    background-color: #ccc; /* Medium grey background for the frame */
+    background-color: #f0f0f0; /* Medium grey background for the frame */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     padding: 20px; /* Padding inside the frame */
