@@ -29,3 +29,55 @@ h1 {
         color: #000;
     }
 }
+
+/* ---------------------
+
+/* Basic reset for body margins and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Full height to help centering */
+    width: 100%; /* Full width to help centering */
+}
+
+/* Ensure the body uses the full viewport and centers content flexibly */
+body {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+    background-color: #f0f0f0; /* Light grey background */
+    font-size: 20px; /* Default text size for mobile view */
+    font-weight: 400; /* Regular weight, not bold */
+    color: #333; /* Dark grey text color */
+}
+
+/* Frame around the text */
+.text-frame {
+    background-color: #ccc; /* Medium grey background for the frame */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px; /* Padding inside the frame */
+    max-width: 90%; /* Max width of the frame to maintain padding from screen edges */
+    box-sizing: border-box; /* Ensures padding doesn't add to width */
+}
+
+/* Styling specific to your centered text */
+.centered-text {
+    font-size: 24px; /* Slightly larger text for better mobile readability */
+    font-weight: 700; /* Bold text for emphasis */
+    text-align: center; /* Ensure text itself is centered even if line breaks occur */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .centered-text {
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (min-width: 601px) {
+    .centered-text {
+        font-size: 28px; /* Larger font size for larger screens */
+    }
+}
