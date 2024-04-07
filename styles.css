@@ -47,7 +47,7 @@ body {
     align-items: center; /* Center vertically */
     font-family: 'Roboto', sans-serif; /* Apply Roboto font */
     background-color: #f0f0f0; /* Light grey background */
-    font-size: 20px; /* Default text size for mobile view */
+    font-size: 40px; /* Default text size for mobile view */
     font-weight: 400; /* Regular weight, not bold */
     color: #333; /* Dark grey text color */
 }
