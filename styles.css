@@ -1,37 +1,3 @@
-/* Basic styles */
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    font-family: 'Roboto', sans-serif;
-}
-
-h1 {
-    font-size: 2rem;
-    color: #333;
-}
-
-/* Responsive styles */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 1.5rem;
-        color: #666;
-    }
-}
-
-@media (min-width: 601px) {
-    h1 {
-        font-size: 4rem;
-        color: #000;
-    }
-}
-
-/* ---------------------
-
 /* Basic reset for body margins and padding */
 body, html {
     margin: 0;
