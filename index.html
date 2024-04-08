@@ -47,7 +47,8 @@ const title = params.get('t');
   
 // If a name is provided in the URL, use it; otherwise, keep the default "Guest"
 if (name) {
-    document.getElementById('inviter_name').textContent = name;
+    const formattedName = name.replace(/./g, ' ');  // Replace all hyphens with spaces using a regular expression
+    document.getElementById('inviter_name').textContent = formattedName;
 } else {
     console.log("No 'n' parameter found in the URL.");
 }
