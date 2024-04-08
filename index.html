@@ -32,9 +32,24 @@
   Ask <a id="inviter_name">a</a> for a new one
  </h1> 
 -->
-  
+
+
+
 <script>
-  document.getElementById('inviter_name').innerText = 'Daniil Liberman';
+// Fetch the current URL's query string
+const params = new URLSearchParams(window.location.search);
+
+// Get the value of the 'n' parameter
+const name = params.get('n');
+
+// If a name is provided in the URL, use it; otherwise, keep the default "Guest"
+if (name) {
+    document.getElementById('inviter_name').textContent = name;
+} else {
+    console.log("No 'n' parameter found in the URL.");
+}
+  
+//  document.getElementById('inviter_name').innerText = 'Daniil Liberman';
 </script>
 
 </body>
