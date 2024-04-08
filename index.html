@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>URL Expired</title>
+  <title id="url_title">URL Expired</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/HumanAppIcon.ico">
@@ -41,13 +41,23 @@ const params = new URLSearchParams(window.location.search);
 
 // Get the value of the 'n' parameter
 const name = params.get('n');
+const title = params.get('t');
 
+  
+  
 // If a name is provided in the URL, use it; otherwise, keep the default "Guest"
 if (name) {
     document.getElementById('inviter_name').textContent = name;
 } else {
     console.log("No 'n' parameter found in the URL.");
 }
+
+if (title) {
+    document.getElementById('url_title').textContent = title;
+} else {
+    console.log("No 't' parameter found in the URL.");
+}
+
   
 //  document.getElementById('inviter_name').innerText = 'Daniil Liberman';
 </script>
