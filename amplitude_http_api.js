@@ -35,7 +35,7 @@ return n._iq[e]};e.amplitude=n})(window,document);
       
 amplitude.getInstance().init("8bd4dcccc01471286562f158edfd65f7");
 
-amplitude.getInstance().logEvent('test-inside-js');
+// amplitude.getInstance().logEvent('test-inside-js');
 // <!-- Amplitude -->
 
 // amplitude_http_api.js

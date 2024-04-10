@@ -23,7 +23,16 @@ amplitude.getInstance().logEvent('Invitation Page Visited', {
     sender: sender,
     recipient: recipient,
     text_variant: text_variant,
-    p_present: pExists
+    p_present: pExists,
+    test: sender+recipient
+});
+
+amplitude.getInstance().setUserId(sender+recipient);
+
+amplitude.getInstance().logEvent('TEST_TEST');
+
+amplitude.getInstance().setUserProperties({
+    last_purchase: '2024-04-10'
 });
 
 
@@ -44,11 +53,11 @@ if (sender) {
     console.log("No 'r' parameter found in the URL.");
 }
 
-//if (title) {
-//    document.getElementById('url_title').textContent = title;
-//} else {
-//    console.log("No 't' parameter found in the URL.");
-//}
+if (title) {
+    document.getElementById('url_title').textContent = title;
+} else {
+    console.log("No 't' parameter found in the URL.");
+}
 
   
 //  document.getElementById('inviter_name').innerText = 'Daniil Liberman';
