@@ -32,20 +32,20 @@
         amplitude.getInstance().init("8bd4dcccc01471286562f158edfd65f7");
 
 // amplitude_http_api.js
-$.ajax({
-    url: 'https://api2.amplitude.com/2/httpapi',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': '*/*'
-    },
-    success: function () {
-        console.log(JSON.stringify({
-            "api_key": "8bd4dcccc01471286562f158edfd65f7",
-            "events": [{
-                "device_id": "<INSERT DEVICE ID>",
-                "event_type": "Sign up"
-            }]
-        }));
-    }
-})
+// $.ajax({
+//    url: 'https://api2.amplitude.com/2/httpapi',
+//  method: 'POST',
+//    headers: {
+//        'Content-Type': 'application/json',
+//        'Accept': '*/*'
+//    },
+//    success: function () {
+//        console.log(JSON.stringify({
+//           "api_key": "8bd4dcccc01471286562f158edfd65f7",
+//            "events": [{
+//                "device_id": "<INSERT DEVICE ID>",
+//                "event_type": "Sign up"
+//            }]
+//        }));
+//    }
+//})
