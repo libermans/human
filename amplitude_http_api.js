@@ -2,6 +2,8 @@
 // <script src="amplitude_http_api.js"></script>
 // <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+document.getElementById('new').innerText = '2';
+
 // amplitude_http_api.js
 $.ajax({
     url: 'https://api2.amplitude.com/2/httpapi',
