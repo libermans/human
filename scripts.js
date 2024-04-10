@@ -4,6 +4,10 @@
 function getQueryParam(param) {
     var urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
+}
+
+function hasQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
     return urlParams.has(param);
 }
 
