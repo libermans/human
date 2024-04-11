@@ -16,24 +16,23 @@ var sender = getQueryParam('s');
 var recipient = getQueryParam('r');
 var text_variant = getQueryParam('tx');
 var pExists = hasQueryParam('p');
+var pageTitle = getQueryParam('ti');
 
 
 // Log the event to Amplitude
-amplitude.getInstance().logEvent('Invitation Page Visited', {
+amplitude.getInstance().logEvent('Page Visited', {
     sender: sender,
     recipient: recipient,
     text_variant: text_variant,
     p_present: pExists,
-    test: sender+recipient
 });
 
-amplitude.getInstance().setUserId(sender+recipient);
+amplitude.getInstance().setUserId(sender+' '+recipient);
 
-amplitude.getInstance().logEvent('TEST_TEST');
 
-amplitude.getInstance().setUserProperties({
-    last_purchase: '2024-04-10'
-});
+//amplitude.getInstance().setUserProperties({
+//    last_purchase: '2024-04-10'
+//});
 
 
 // Fetch the current URL's query string
@@ -53,10 +52,10 @@ if (sender) {
     console.log("No 'r' parameter found in the URL.");
 }
 
-if (title) {
-    document.getElementById('url_title').textContent = title;
+if (pageTitle) {
+    document.getElementById('url_title').textContent = pageTitle;
 } else {
-    console.log("No 't' parameter found in the URL.");
+    console.log("No 'ti' parameter found in the URL.");
 }
 
   
