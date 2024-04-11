@@ -1,10 +1,4 @@
-// include the following lines in your HTML file
-// <script src="amplitude_http_api.js"></script>
-// <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-// document.getElementById('new').innerText = '2';
-
-// <!-- Amplitude -->
+// Amplitude SDK
 (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
 r.type="text/javascript";
 r.integrity="sha384-5fhzC8Xw3m+x5cBag4AMKRdf900vw3AoaLty2vYfcKIX1iEsYRHZF4RLXIsu2o+F"
@@ -34,25 +28,43 @@ for(var n=0;n<d.length;n++){e(d[n])}}v(n);n.getInstance=function(e){e=(
 return n._iq[e]};e.amplitude=n})(window,document);
       
 amplitude.getInstance().init("8bd4dcccc01471286562f158edfd65f7");
+// SDK END
 
-// Function to extract URL parameters
-function getQueryParam(param) {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
+
+
+// Function to extract ordered parameters from the URL query string
+function getOrderedParams() {
+    // Get the full URL query string without the '?' character
+    var queryString = window.location.search.substring(1);
+
+    // Split the query string into individual parameters
+    var params = queryString.split('&');
+
+    // Create an object to store the parameters by order
+    var orderedParams = {
+        senderX: params[0],       // Assuming 'a' represents 'name'
+        recipientX: params[1],   // Assuming 'b' represents 'lastname'
+        text_variantX: params[2]        // Assuming 'c' represents 'type'
+    };
+
+    return orderedParams;
 }
 
-function hasQueryParam(param) {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.has(param);
-}
+// Extract parameters by order
+var userParams = getOrderedParams();
+
+// Log extracted parameters (for demonstration purposes)
+console.log(userParams);
 
 // Extract parameters
-var sender = getQueryParam('s');
-var recipient = getQueryParam('r');
-var text_variant = getQueryParam('tx');
-var pExists = hasQueryParam('p');
-var pageTitle = getQueryParam('ti');
-
+var sender = userParams.senderX;
+var recipient = userParams.recipientX;
+var text_variant = userParams.text_variantX;
+// var sender = getQueryParam('s');
+// var recipient = getQueryParam('r');
+// var text_variant = getQueryParam('tx');
+// var pExists = hasQueryParam('p');
+// var pageTitle = getQueryParam('ti');
 
 // Log the event to Amplitude
 amplitude.getInstance().setUserId(sender+' '+recipient);
@@ -61,7 +73,7 @@ amplitude.getInstance().logEvent('Page Visited', {
     sender: sender,
     recipient: recipient,
     text_variant: text_variant,
-    p_present: pExists,
+  //  p_present: pExists,
 });
 
 // amplitude.getInstance().logEvent('test-inside-js');

@@ -9,6 +9,19 @@
 // Get the value of the 'n' parameter
 // const name = params.get('n');
 // const title = params.get('t');
+
+// Function to extract URL parameters
+function getQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+function hasQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.has(param);
+}
+
+var pageTitle = getQueryParam('ti');
   
 // If a name is provided in the URL, use it; otherwise, keep the default "Guest"
 if (sender) {
