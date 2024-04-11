@@ -1,35 +1,3 @@
-// Assuming the URL is like ?sender=John&recipient=Jane&text_variant=1
-
-// Function to extract URL parameters
-function getQueryParam(param) {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-}
-
-function hasQueryParam(param) {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.has(param);
-}
-
-// Extract parameters
-var sender = getQueryParam('s');
-var recipient = getQueryParam('r');
-var text_variant = getQueryParam('tx');
-var pExists = hasQueryParam('p');
-var pageTitle = getQueryParam('ti');
-
-
-// Log the event to Amplitude
-amplitude.getInstance().logEvent('Page Visited', {
-    sender: sender,
-    recipient: recipient,
-    text_variant: text_variant,
-    p_present: pExists,
-});
-
-amplitude.getInstance().setUserId(sender+' '+recipient);
-
-
 //amplitude.getInstance().setUserProperties({
 //    last_purchase: '2024-04-10'
 //});
@@ -41,8 +9,6 @@ amplitude.getInstance().setUserId(sender+' '+recipient);
 // Get the value of the 'n' parameter
 // const name = params.get('n');
 // const title = params.get('t');
-
-  
   
 // If a name is provided in the URL, use it; otherwise, keep the default "Guest"
 if (sender) {

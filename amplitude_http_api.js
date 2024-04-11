@@ -35,6 +35,35 @@ return n._iq[e]};e.amplitude=n})(window,document);
       
 amplitude.getInstance().init("8bd4dcccc01471286562f158edfd65f7");
 
+// Function to extract URL parameters
+function getQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+function hasQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.has(param);
+}
+
+// Extract parameters
+var sender = getQueryParam('s');
+var recipient = getQueryParam('r');
+var text_variant = getQueryParam('tx');
+var pExists = hasQueryParam('p');
+var pageTitle = getQueryParam('ti');
+
+
+// Log the event to Amplitude
+amplitude.getInstance().setUserId(sender+' '+recipient);
+
+amplitude.getInstance().logEvent('Page Visited', {
+    sender: sender,
+    recipient: recipient,
+    text_variant: text_variant,
+    p_present: pExists,
+});
+
 // amplitude.getInstance().logEvent('test-inside-js');
 // <!-- Amplitude -->
 
