@@ -22,7 +22,12 @@ function hasQueryParam(param) {
 }
 
 var pageTitle = getQueryParam('ti');
-  
+
+// Check if any parameters are present
+if (sender) {
+    document.getElementById('message').innerHTML = 'The invitation has expired <br><br> Ask <a id="inviter_name">a</a> for a new one';
+}
+
 // If a name is provided in the URL, use it; otherwise, keep the default "Guest"
 if (sender) {
     const formattedName = sender.replace(/\./g, ' ');  // Replace all hyphens with spaces using a regular expression
