@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма отправки номера телефона</title>
+    
+    <!-- Firebase SDK JS -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-database.js"></script>
+    <script>
+      // Ваша конфигурация Firebase
+      var firebaseConfig = {
+        apiKey: "AIzaSyDBMe4Q1gM1kXjYt2Loz...",
+        authDomain: "javascript-test-katya.firebaseapp.com",
+        databaseURL: "https://javascript-test-katya-default-rtdb.firebaseio.com",
+        projectId: "javascript-test-katya",
+        storageBucket: "javascript-test-katya.appspot.com",
+        messagingSenderId: "358522842898",
+        appId: "1:358522842898:web:1c966b67fa786088c39b"
+        // Примечание: поле measurementId используется только в аналитике и здесь не требуется.
+      };
+      // Инициализация Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Изменение шрифта */
+            display: flex;
+            justify-content: center; /* Центрирование содержимого по горизонтали */
+            align-items: center; /* Центрирование содержимого по вертикали */
+            height: 100vh; /* Высота всего видимого экрана */
+            margin: 0; /* Убираем стандартные отступы */
+        }
+        form {
+            display: flex;
+            flex-direction: column; /* Элементы формы располагаются вертикально */
+            width: 300px; /* Ширина формы */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Тень вокруг формы */
+            padding: 20px; /* Внутренние отступы формы */
+            box-sizing: border-box; /* Размеры блоков включают padding и border */
+        }
+        input, button {
+            margin-bottom: 10px; /* Отступ между элементами формы */
+            padding: 10px; /* Паддинг для input и button */
+            font-size: 16px; /* Размер шрифта для input и button */
+        }
+        button {
+            cursor: pointer; /* Курсор в виде указателя */
+            background-color: #007BFF; /* Фон кнопки */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем рамку кнопки */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Enter your phone number</h1>
+    <form id="phoneForm">
+        <input type="tel" id="phone" name="phone" placeholder="phone number" required>
+        <button type="submit">send</button>
+    </form>
+
+    <script>
+        // Обработчик события отправки формы
+        document.getElementById('phoneForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем обычное поведение формы
+            var phoneNumber = document.getElementById('phone').value; // Получаем номер телефона
+
+            // Отправляем номер телефона в Firebase
+            firebase.database().ref('phoneNumbers').push().set({
+                phoneNumber: phoneNumber
+            }).then(function() {
+                alert('Done, thanks for participating in the test');
+                document.getElementById('phone').value = ''; // Очищаем поле формы
+            }).catch(function(error) {
+                alert('error: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
