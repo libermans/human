@@ -20,6 +20,42 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const auth = auth();
-const firestore = firestore();
+const firebaseAuth = auth();
+const firebaseFirestore = firestore();
+
+let recaptchaVerifier;
+window.onload = function() {
+  recaptchaVerifier = new firebaseAuth.RecaptchaVerifier('recaptcha-container');
+  recaptchaVerifier.render();
+};
+
+function sendOTP() {
+  const phoneNumber = document.getElementById('phone-number').value;
+  const appVerifier = recaptchaVerifier;
+  firebaseAuth.signInWithPhoneNumber(phoneNumber, appVerifier)
+    .then(confirmationResult => {
+      window.confirmationResult = confirmationResult;
+    }).catch(error => {
+      console.error("SMS not sent", error);
+    });
+}
+
+function verifyOTP() {
+  const code = document.getElementById('otp').value;
+  confirmationResult.confirm(code).then((result) => {
+    const user = result.user;
+    console.log("User is authenticated");
+
+    // Log to Firestore
+    firebaseFirestore.collection("users").doc(user.uid).set({
+      phone: user.phoneNumber,
+      signupURL: window.location.href,
+      firstVisit: new Date()
+    }).then(() => {
+      window.location.href = 'home.html';  // Redirect to home page after login
+    });
+  }).catch((error) => {
+    console.error("Incorrect OTP", error);
+  });
+}
   
