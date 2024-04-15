@@ -1,10 +1,10 @@
 // Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
-import { firestore } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-import { auth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { auth } from          "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import { firestore } from     "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { getAnalytics } from  "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCr_sGI-JPbFLRbuG7OthNLT9ukvgkMQns",
