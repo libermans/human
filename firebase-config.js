@@ -4,7 +4,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { initializeAuth } from          "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { initializeFirestore } from     "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-import { getAnalytics } from  "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+// import { getAnalytics } from  "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCr_sGI-JPbFLRbuG7OthNLT9ukvgkMQns",
@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 
 const firebaseAuth = initializeAuth(app);
 const firebaseFirestore = initializeFirestore();
