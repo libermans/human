@@ -35,9 +35,9 @@ body, html {
     padding: 0;
     height: 100%; /* Full height to help centering */
     width: 100%; /* Full width to help centering */
-/*    display: flex; */
+/*    display: flex; 
     justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+/*    align-items: center; /* Center vertically */
 
 }
 
