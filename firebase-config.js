@@ -21,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 const firebaseAuth = initializeAuth(app);
-const firebaseFirestore = firestore();
+const firebaseFirestore = initializeFirestore();
 
 let recaptchaVerifier;
 window.onload = function() {
