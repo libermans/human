@@ -2,7 +2,7 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { auth } from          "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import { initializeAuth } from          "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { firestore } from     "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 import { getAnalytics } from  "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
 
@@ -20,7 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const firebaseAuth = auth();
+const firebaseAuth = initializeAuth(app);
 const firebaseFirestore = firestore();
 
 let recaptchaVerifier;
