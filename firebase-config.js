@@ -3,9 +3,9 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
-import { auth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { firestore } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-//
+import { auth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCr_sGI-JPbFLRbuG7OthNLT9ukvgkMQns",
     authDomain: "human-test-1.firebaseapp.com",
