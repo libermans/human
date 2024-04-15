@@ -1,30 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title id="url_title">Oh, looks like your help is not needed anymore</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="HumanAppIcon.ico">
+<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="fav.ico">
+<link rel="stylesheet" href="styles.css">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-
-  <script src="amplitude_http_api.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
 
 </head>
-<body>  
-  <div class="text-frame">
-    <div class="centered-text" id="message">You need to have a proper invitation URL to use this page</div>
-  </div>
-  <script src="scripts.js"></script>
- 
-  <a href="auth.html">
-    <button>Auth</button>
-  </a>
-  
+<body>
+  <p>To access sign in with your mobile phone number</p>
+  <p>
+   <input type="text" id="phone-number" placeholder="Enter phone number">
+   <button onclick="sendOTP();">Send OTP</button>
+  </p><p> 
+   <input type="text" id="otp" placeholder="Enter OTP">
+   <button onclick="verifyOTP();">Verify OTP</button>
+  </p>
+  <script>
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
+    const auth = firebase.auth();
+    const firestore = firebase.firestore();
+
+    let recaptchaVerifier;
+    window.onload = function() {
+      recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+      recaptchaVerifier.render();
+    };
+
+    function sendOTP() {
+      const phoneNumber = document.getElementById('phone-number').value;
+      const appVerifier = recaptchaVerifier;
+      auth.signInWithPhoneNumber(phoneNumber, appVerifier)
+        .then(confirmationResult => {
+          window.confirmationResult = confirmationResult;
+        }).catch(error => {
+          console.error("SMS not sent", error);
+        });
+    }
+
+    function verifyOTP() {
+      const code = document.getElementById('otp').value;
+      confirmationResult.confirm(code).then((result) => {
+        const user = result.user;
+        console.log("User is authenticated");
+
+        // Log to Firestore
+        firestore.collection("users").doc(user.uid).set({
+          phone: user.phoneNumber,
+          signupURL: window.location.href,
+          firstVisit: new Date()
+        }).then(() => {
+          window.location.href = 'home.html';  // Redirect to home page after login
+        });
+      }).catch((error) => {
+        console.error("Incorrect OTP", error);
+      });
+    }
+  </script>
+  <div id="recaptcha-container"></div>
 </body>
 </html>

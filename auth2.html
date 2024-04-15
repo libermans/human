@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>
+		 Firebase Phone Number Auth
+		</title>
+	</head>
+	<body>
+		<form>
+			<input type="text" id="verificationcode" value="enter verification">
+				<input type="button" value="Submit" onclick="myFunction()">
+				</form>
+				<div id="recaptcha-container"></div>
+				<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+				<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAL8dSTuXb92DWu0l78dtV4m4fC8psKeV4",
+    authDomain: "groupinger-users.firebaseapp.com",
+    databaseURL: "https://groupinger-users.firebaseio.com",
+    projectId: "groupinger-users",
+    storageBucket: "groupinger-users.appspot.com",
+    messagingSenderId: "432661298034"
+  };
+  firebase.initializeApp(config);
+</script>
+<script type="text/javascript"> 
+window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container'); 
+firebase.auth().signInWithPhoneNumber("+919072644297", window.recaptchaVerifier) 
+.then(function(confirmationResult) { 
+window.confirmationResult = confirmationResult; 
+a(confirmationResult); 
+}); 
+var myFunction = function() { 
+window.confirmationResult.confirm(document.getElementById("verificationcode").value) 
+.then(function(result) { 
+alert('login process successfull!\n redirecting');
+alert('<a href="javascript:alert(\'hi\');">alert</a>')
+window.location.href="details.html";
+}, function(error) { 
+alert(error); 
+}); 
+};
+  </script>
+ </body>
+</html>
