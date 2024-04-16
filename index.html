@@ -38,7 +38,16 @@
       };
 
       // Initialize the FirebaseUI Widget using Firebase.
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      var auth = firebase.auth();
+      var ui = new firebaseui.auth.AuthUI(auth);
+      
+      window.recaptchaVerifier = new firebase.RecaptchaVerifier(auth, 'sign-in-button', {
+        'size': 'invisible',
+        'callback': (response) => {
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          onSignInSubmit();
+        }
+      });
       // The start method will wait until the DOM is loaded.
       ui.start('#firebaseui-auth-container', uiConfig);
     </script>
