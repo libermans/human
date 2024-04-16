@@ -73,6 +73,7 @@ amplitude.getInstance().logEvent('Page Visited', {
     sender: sender,
     recipient: recipient,
     text_variant: text_variant,
+    user_agent: navigator.userAgent,
   //  p_present: pExists,
 });
 
