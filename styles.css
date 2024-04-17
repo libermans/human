@@ -4,14 +4,20 @@
 /* Apply Roboto font to all text elements */
 body, h1, h2, h3, h4, h5, h6, p, li, a, input, button, textarea {
     font-family: 'Roboto', sans-serif;
+    color: #333; /* Dark grey text color */
 }
 
-/* Optionally set some general text styles */
-body {
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4; /* light gray background */
-    color: #333; /* dark gray text */
+.top-text { font-size: 30px; font-weight: 700; }
+.second-text { font-size: 24px; font-weight: 400; color: darkred;}
+
+html, body {
+    height: 100%; /* Makes sure the body takes full viewport height */
+    margin: 0;    /* Removes default margin from the body and html */
+    padding: 0;   /* Removes default padding */
+    display: flex; /* Enables flexbox for body to use it for centering */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    background: #f0f0f0; /* Just an example background color */
 }
 
 input, button, textarea {
@@ -25,20 +31,6 @@ a {
 
 a:hover {
     text-decoration: underline; /* Underline on hover for links */
-}
-
-/* Add any other global styles as needed */
-
-/* Basic reset for body margins and padding */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%; /* Full height to help centering */
-    width: 100%; /* Full width to help centering */
-/*    display: flex; 
-    justify-content: center; /* Center horizontally */
-/*    align-items: center; /* Center vertically */
-
 }
 
 /* Ensure the body uses the full viewport and centers content flexibly */
@@ -64,20 +56,41 @@ br {
 
 /* Styling specific to your centered text */
 .centered-text {
-    font-size: 24px; /* Slightly larger text for better mobile readability */
-    font-weight: 700; /* Bold text for emphasis */
+
     text-align: center; /* Ensure text itself is centered even if line breaks occur */
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .centered-text {
-        font-size: 20px; /* Adjust font size for smaller screens */
-    }
+
+
+video {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+
+    width: 100%;  /* Makes the video fill the container */
+    height: auto;  /* Maintains aspect ratio */
+    display: block;  /* Removes extra space below the video */
 }
 
-@media (min-width: 601px) {
-    .centered-text {
-        font-size: 28px; /* Larger font size for larger screens */
-    }
+.video-container {
+    max-width: 500px;    /* Maximum width of the video container */
+    min-width: 200px;    /* Minimum width of the video container */
+    width: 100%;         /* Ensures the container is responsive within the min-max range */
+    background: white;   /* Sets the background color of the container to white */
+    border-radius: 20px; /* Applies rounded corners to the container */
+    overflow: hidden;    /* Ensures that the contents of the container do not spill out */
+    margin: 20px auto;   /* Centers the container on the page and adds some spacing */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for better depth */
+}
+
+.txt-container {
+    max-width: 500px;    /* Maximum width of the video container */
+    min-width: 200px;    /* Minimum width of the video container */
+    width: 100%;         /* Ensures the container is responsive within the min-max range */
+    padding: 0px; /* Optional: for some space inside the container */    
+}
+
+.centered-container {
+    text-align: center; /* Ensures text inside the container is centered */
+    width: 80%;
 }

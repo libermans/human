@@ -1,0 +1,19 @@
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .centered-text {
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (min-width: 601px) {
+    .centered-text {
+        font-size: 28px; /* Larger font size for larger screens */
+    }
+}
+
+/* Larger screens (laptops/desktops) */
+@media (min-width: 768px) {
+    .video-container {
+        width: 75%;  /* Makes the container 50% larger than on phones */
+    }
+}
