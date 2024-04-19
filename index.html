@@ -7,12 +7,20 @@
   <link rel="icon" type="image/x-icon" href="fav.ico">
   <link rel="stylesheet" href="styles.css">
 
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+
   <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth-compat.js"></script>
   <script type="text/javascript">
       const firebaseConfig = {
         apiKey: "AIzaSyCr_sGI-JPbFLRbuG7OthNLT9ukvgkMQns",
         authDomain: "human-test-1.firebaseapp.com",
+        databaseURL: "https://human-test-1-default-rtdb.firebaseio.com",
         projectId: "human-test-1",
         storageBucket: "human-test-1.appspot.com",
         messagingSenderId: "734408801121",
@@ -24,7 +32,7 @@
   </script>
 <script>
 // Assuming Firebase has been initialized already as shown in previous examples
-firebase.analytics().logEvent('page_view', {
+firebase.analytics().logEvent('KUKU_page_view', {
   page_path: '/example-path',  // Dynamically set this as needed
   page_title: document.title,  // Optionally capture the title of the page
   page_location: window.location.href  // Full URL of the page
@@ -39,7 +47,7 @@ firebase.analytics().logEvent('page_view', {
         <div class="txt-container">
             <h1 class="ttl-text">Thank you for participation</h1>
             <h3 class="err-text">the link has expired</h3>
-            <p>Please let %username know</p>
+            <p>Please let %username #1 know</p>
         </div>
         <div class="video-container">
             <video autoplay loop muted>
