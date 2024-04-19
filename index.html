@@ -12,6 +12,15 @@
   <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B392VBT4QH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-B392VBT4QH');
+  </script>
+
   <script type="text/javascript">
       const firebaseConfig = {
         apiKey: "AIzaSyCr_sGI-JPbFLRbuG7OthNLT9ukvgkMQns",
@@ -38,7 +47,14 @@ firebase.analytics().logEvent('KUKU_page_view', {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-<body>  
+<body>
+    <script>
+        gtag('event', 'KUKU_page_view2', {
+            page_path: '/example-path',  // Dynamically set this as needed
+            page_title: document.title,  // Optionally capture the title of the page
+            page_location: window.location.href  // Full URL of the page
+        });
+    </script>
     <div class="centered-container">
         <div class="txt-container">
             <h1 class="ttl-text">Thank you for participation</h1>
