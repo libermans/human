@@ -7,7 +7,6 @@
   <link rel="icon" type="image/x-icon" href="fav.ico">
   <link rel="stylesheet" href="styles.css">
 
-
   <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
@@ -37,7 +36,7 @@
   </script>
 <script>
 // Assuming Firebase has been initialized already as shown in previous examples
-firebase.analytics().logEvent('KUKU_page_view', {
+firebase.analytics().logEvent('One', {
   page_path: '/example-path',  // Dynamically set this as needed
   page_title: document.title,  // Optionally capture the title of the page
   page_location: window.location.href  // Full URL of the page
@@ -47,11 +46,12 @@ firebase.analytics().logEvent('KUKU_page_view', {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="firebase.js"></script>
+  <script src="am.js"></script>
 
 </head>
 <body>
     <script>
-        gtag('event', 'KUKU_page_view2', {
+        gtag('event', 'Two', {
             page_path: '/example-path',  // Dynamically set this as needed
             page_title: document.title,  // Optionally capture the title of the page
             page_location: window.location.href  // Full URL of the page
