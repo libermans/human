@@ -66,16 +66,49 @@ var text_variant = userParams.text_variantX;
 // var pExists = hasQueryParam('p');
 // var pageTitle = getQueryParam('ti');
 
-// Log the event to Amplitude
-amplitude.getInstance().setUserId(sender+' '+recipient);
-
-amplitude.getInstance().logEvent('Page Visited', {
-    sender: sender,
-    recipient: recipient,
-    text_variant: text_variant,
-    user_agent: navigator.userAgent,
-  //  p_present: pExists,
-});
+if((sender == "David" || sender == "DavidSecond") && recipient == "First") {
+      amplitude.getInstance().logEvent('First Visited Before Login', {
+          sender: sender,
+          recipient: recipient,
+          text_variant: text_variant,
+          user_agent: navigator.userAgent,
+        //  p_present: pExists,
+      });
+} else if ((sender == "David" || sender == "DavidSecond") && recipient == "Second") {
+      amplitude.getInstance().logEvent('Second Visited Before Login', {
+          sender: sender,
+          recipient: recipient,
+          text_variant: text_variant,
+          user_agent: navigator.userAgent,
+        //  p_present: pExists,
+      });
+      // Assuming the user logs in and you now have their real user ID
+      var identify = new amplitude.Identify();
+      // Send the Identify call
+      amplitude.getInstance().identify(identify);
+      // Set the user ID to link all past (anonymous) and future data to this user
+      amplitude.getInstance().setUserId(sender+' '+recipient);
+      amplitude.getInstance().logEvent('Second Visited After Login', {
+          sender: sender,
+          recipient: recipient,
+          text_variant: text_variant,
+          user_agent: navigator.userAgent,
+        //  p_present: pExists,
+      });
+      amplitude.getInstance().setUserId(null);
+      amplitude.getInstance().regenerateDeviceId();
+} else {
+      // Log the event to Amplitude
+      amplitude.getInstance().setUserId(sender+' '+recipient);
+      
+      amplitude.getInstance().logEvent('Page Visited', {
+          sender: sender,
+          recipient: recipient,
+          text_variant: text_variant,
+          user_agent: navigator.userAgent,
+        //  p_present: pExists,
+      });
+}
 
 // amplitude.getInstance().logEvent('test-inside-js');
 // <!-- Amplitude -->
