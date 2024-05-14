@@ -34,29 +34,14 @@
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();  // Initializes Firebase Analytics
   </script>
-<script>
-// Assuming Firebase has been initialized already as shown in previous examples
-firebase.analytics().logEvent('One', {
-  page_path: '/example-path',  // Dynamically set this as needed
-  page_title: document.title,  // Optionally capture the title of the page
-  page_location: window.location.href  // Full URL of the page
-});
-</script>
-
+  <script>firebase.analytics().logEvent('One', {page_location: window.location.href});</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="firebase.js"></script>
   <script src="am.js"></script>
 
 </head>
 <body>
-    <script>
-        gtag('event', 'Two', {
-            page_path: '/example-path',  // Dynamically set this as needed
-            page_title: document.title,  // Optionally capture the title of the page
-            page_location: window.location.href  // Full URL of the page
-        });
-    </script>
+
     <div class="centered-container">
         <div class="txt-container">
             <h1 class="ttl-text">Thank you for participation</h1>

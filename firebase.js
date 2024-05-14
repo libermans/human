@@ -8,3 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Save the data to Firebase
     database.ref('params/').push(params);
   });
+
+  <!--<script src="firebase.js"></script>-->
+  

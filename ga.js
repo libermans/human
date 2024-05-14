@@ -31,3 +31,12 @@ page_title: document.title,  // Optionally capture the title of the page
 page_location: window.location.href  // Full URL of the page
 });
 </script>
+
+
+<script>
+gtag('event', 'Two', {
+    page_path: '/example-path',  // Dynamically set this as needed
+    page_title: document.title,  // Optionally capture the title of the page
+    page_location: window.location.href  // Full URL of the page
+});
+</script>
