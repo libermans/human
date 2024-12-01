@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC Reader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        #status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #nfcData {
+            white-space: pre-wrap;
+            text-align: left;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>NFC Reader</h1>
+    <button id="scanButton">Start NFC Scan</button>
+    <div id="status"></div>
+    <div id="nfcData"></div>
+
+    <script>
+        const scanButton = document.getElementById('scanButton');
+        const statusDiv = document.getElementById('status');
+        const nfcDataDiv = document.getElementById('nfcData');
+
+        // Check if Web NFC is supported
+        if ('NDEFReader' in window) {
+            scanButton.addEventListener('click', async () => {
+                try {
+                    statusDiv.textContent = 'Scanning for NFC tags...';
+                    statusDiv.className = 'success';
+                    
+                    const ndef = new NDEFReader();
+                    await ndef.scan();
+                    
+                    ndef.addEventListener("reading", ({ message, serialNumber }) => {
+                        let data = '';
+                        data += `Serial Number: ${serialNumber}\n\n`;
+                        
+                        message.records.forEach((record, index) => {
+                            data += `Record ${index + 1}:\n`;
+                            data += `• Type: ${record.recordType}\n`;
+                            
+                            if (record.mediaType) {
+                                data += `• Media Type: ${record.mediaType}\n`;
+                            }
+
+                            try {
+                                const textDecoder = new TextDecoder();
+                                const text = textDecoder.decode(record.data);
+                                data += `• Data: ${text}\n`;
+                            } catch (error) {
+                                data += `• Data: (Binary data)\n`;
+                            }
+                            
+                            data += '\n';
+                        });
+
+                        nfcDataDiv.textContent = data;
+                    });
+
+                } catch (error) {
+                    statusDiv.textContent = `Error: ${error.message}`;
+                    statusDiv.className = 'error';
+                }
+            });
+        } else {
+            statusDiv.textContent = 'Web NFC is not supported on this device';
+            statusDiv.className = 'error';
+            scanButton.disabled = true;
+        }
+    </script>
+</body>
+</html>
