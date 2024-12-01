@@ -48,14 +48,13 @@
 
         // Check if Web NFC is supported
         if ('NDEFReader' in window) {
-            let ndefInstance = null; // Store the NDEFReader instance
+            let ndefInstance = null;
 
             scanButton.addEventListener('click', async () => {
                 try {
                     statusDiv.textContent = 'Requesting NFC permission...';
                     statusDiv.className = 'success';
                     
-                    // Create new instance and store it
                     ndefInstance = new NDEFReader();
                     
                     // Add error handler
@@ -65,41 +64,49 @@
                         statusDiv.className = 'error';
                     });
 
-                    // Add reading handler before starting the scan
+                    // Add reading handler for any NFC tag
                     ndefInstance.addEventListener("reading", ({ message, serialNumber }) => {
                         console.log("NFC Reading event triggered", { message, serialNumber });
                         statusDiv.textContent = 'NFC Tag detected!';
                         
                         let data = '';
                         data += `Serial Number: ${serialNumber}\n\n`;
-                        
-                        message.records.forEach((record, index) => {
-                            console.log(`Processing record ${index}:`, record);
-                            data += `Record ${index + 1}:\n`;
-                            data += `• Type: ${record.recordType}\n`;
-                            
-                            if (record.mediaType) {
-                                data += `• Media Type: ${record.mediaType}\n`;
-                            }
 
-                            try {
-                                const textDecoder = new TextDecoder();
-                                const text = textDecoder.decode(record.data);
-                                data += `• Data: ${text}\n`;
-                            } catch (error) {
-                                console.error('Error decoding data:', error);
-                                data += `• Data: (Binary data)\n`;
-                            }
-                            
-                            data += '\n';
-                        });
+                        // Check if the message exists (NDEF formatted)
+                        if (message && message.records) {
+                            data += `Tag type: NDEF\n`;
+                            message.records.forEach((record, index) => {
+                                console.log(`Processing record ${index}:`, record);
+                                data += `Record ${index + 1}:\n`;
+                                data += `• Type: ${record.recordType}\n`;
+                                
+                                if (record.mediaType) {
+                                    data += `• Media Type: ${record.mediaType}\n`;
+                                }
+
+                                try {
+                                    const textDecoder = new TextDecoder();
+                                    const text = textDecoder.decode(record.data);
+                                    data += `• Data: ${text}\n`;
+                                } catch (error) {
+                                    console.error('Error decoding data:', error);
+                                    const byteArray = Array.from(new Uint8Array(record.data));
+                                    data += `• Raw Data (hex): ${byteArray.map(b => b.toString(16).padStart(2, '0')).join(' ')}\n`;
+                                }
+                                data += '\n';
+                            });
+                        } else {
+                            data += `Tag type: Non-NDEF\n`;
+                            data += `This appears to be a non-NDEF formatted tag.\n`;
+                            data += `Only the serial number can be read.\n`;
+                        }
 
                         nfcDataDiv.textContent = data;
                     });
 
-                    // Start scanning
+                    // Start scanning with options for any NFC tag
                     console.log('Starting NFC scan...');
-                    await ndefInstance.scan();
+                    await ndefInstance.scan({ keepReading: true });
                     statusDiv.textContent = 'Scanning for NFC tags... (Bring NFC tag close to the device)';
                     
                 } catch (error) {
@@ -107,11 +114,12 @@
                     statusDiv.textContent = `Error: ${error.message}`;
                     statusDiv.className = 'error';
                     
-                    // Check if it's a permission error
                     if (error.name === 'NotAllowedError') {
                         statusDiv.textContent = 'NFC permission denied. Please allow NFC access.';
                     } else if (error.name === 'NotReadableError') {
                         statusDiv.textContent = 'Cannot read NFC tag. Please try again.';
+                    } else if (error.name === 'NotSupportedError') {
+                        statusDiv.textContent = 'This type of NFC tag is not supported.';
                     }
                 }
             });
