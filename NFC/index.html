@@ -109,21 +109,21 @@
                     // Start scanning with options for any NFC tag
                     console.log('Starting NFC scan...');
                     // await ndefInstance.scan({ keepReading: true });
-                    // statusDiv.textContent = 'Scanning for NFC tags... (Bring NFC tag close to the device)';
+                    statusDiv.textContent = 'Scanning for NFC tags... (Bring NFC tag close to the device)';
                     
                     // Start scanning for NFC tags
                     ndefInstance.scan().then(() => {
                         console.log("Scan started successfully.");
 
                         // Event listener for reading NFC tags
-                        reader.onreading = event => {
-                        const message = event.message;
+                        ndefInstance.onreading = event => {
+                            const message = event.message;
 
-                        // Process each record in the NFC message
-                        for (const record of message.records) {
-                            console.log("Record Type: ", record.recordType);
-                            console.log("Record Data: ", new TextDecoder().decode(record.data));
-                        }
+                            // Process each record in the NFC message
+                            for (const record of message.records) {
+                                console.log("Record Type: ", record.recordType);
+                                console.log("Record Data: ", new TextDecoder().decode(record.data));
+                            }
                         };
                     }).catch(error => {
                         console.error("Error starting NFC scan:", error);
